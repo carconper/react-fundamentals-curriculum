@@ -18,6 +18,14 @@ var GetCityContainer = React.createClass({
       city: ''
     }
   },
+  componentDidMount: function () {
+    var query = this.props.location.query;
+    openWeatherHelpers.getCityForecast(query.city, "forecast");
+    console.log('componentDidMount');
+  },
+  componentWillUnmount: function () {
+    console.log('componentWillUnmount');
+  },
   handleSubmitCity: function () {
     console.log(this.state.city)
   },
