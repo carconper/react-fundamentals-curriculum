@@ -4,6 +4,9 @@ var GetCity = require('../components/GetCity');
 var helpers = require('../utils/openWeatherHelpers');
 
 var GetCityContainer = React.createClass({
+  contextTypes: {
+    router: React.PropTypes.object.isRequired
+  },
   getDefaultProps: function () {
     return {
       direction: 'column',
@@ -25,9 +28,19 @@ var GetCityContainer = React.createClass({
   componentWillUnmount: function () {
     console.log('componentWillUnmount');
   },
-  handleSubmitCity: function () {
+  handleSubmitCity: function (e) {
+    e.preventDefault()
     console.log(this.state.city)
-    helpers.getForecast(this.state.city, "forecast")
+    var city = this.state.city
+    
+//    if (this.props.routeParams.forecast) {
+//      console.log("WE ARE IN FORECAST NOW! NEXT SITE UNDER CONSTRUCTION");
+//    } else {
+      // Go to Forecast for the introduced City
+      console.log(this.context)
+      this.context.router.push('/forecast/' + this.state.city)
+//    }
+    // helpers.getForecast(this.state.city, "forecast")
   },
   handleUpdateCity: function (e) {
     this.setState({
