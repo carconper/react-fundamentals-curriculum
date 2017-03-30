@@ -17,11 +17,11 @@ var helpers = {
   getForecast: function (city, type) {
     if (type == "forecast") {
       return getCityForecast(city).then(function (info) {
-        console.log("FORECAST", info);
+        console.log("FORECAST", info.data);
       })
     } else if (type == "forecast5") {
       return getCityForecast5(city).then(function (info) {
-        console.log("FORECAST5", info);
+        console.log("FORECAST5", info.data);
       })
     } else {
       console.log("TYPE_ERROR", "Wrong type specified");

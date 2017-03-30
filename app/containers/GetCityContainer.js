@@ -1,6 +1,7 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
 var GetCity = require('../components/GetCity');
+var helpers = require('../utils/openWeatherHelpers');
 
 var GetCityContainer = React.createClass({
   getDefaultProps: function () {
@@ -19,8 +20,6 @@ var GetCityContainer = React.createClass({
     }
   },
   componentDidMount: function () {
-    var query = this.props.location.query;
-    openWeatherHelpers.getCityForecast(query.city, "forecast");
     console.log('componentDidMount');
   },
   componentWillUnmount: function () {
@@ -28,6 +27,7 @@ var GetCityContainer = React.createClass({
   },
   handleSubmitCity: function () {
     console.log(this.state.city)
+    helpers.getForecast(this.state.city, "forecast")
   },
   handleUpdateCity: function (e) {
     this.setState({
