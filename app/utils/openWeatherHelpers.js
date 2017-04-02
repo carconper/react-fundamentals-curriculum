@@ -18,10 +18,12 @@ var helpers = {
     if (type == "forecast") {
       return getCityForecast(city).then(function (info) {
         console.log("FORECAST", info.data);
+        return info.data
       })
     } else if (type == "forecast5") {
       return getCityForecast5(city).then(function (info) {
         console.log("FORECAST5", info.data);
+        return info.data
       })
     } else {
       console.log("TYPE_ERROR", "Wrong type specified");

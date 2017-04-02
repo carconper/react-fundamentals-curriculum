@@ -23,24 +23,23 @@ var GetCityContainer = React.createClass({
     }
   },
   componentDidMount: function () {
-    console.log('componentDidMount');
+    console.log(this.constructor.displayName + ': componentDidMount');
   },
   componentWillUnmount: function () {
-    console.log('componentWillUnmount');
+    console.log(this.constructor.displayName + ': componentWillUnmount');
   },
   handleSubmitCity: function (e) {
     e.preventDefault()
     console.log(this.state.city)
     var city = this.state.city
-    
-//    if (this.props.routeParams.forecast) {
-//      console.log("WE ARE IN FORECAST NOW! NEXT SITE UNDER CONSTRUCTION");
-//    } else {
-      // Go to Forecast for the introduced City
-      console.log(this.context)
-      this.context.router.push('/forecast/' + this.state.city)
-//    }
-    // helpers.getForecast(this.state.city, "forecast")
+    console.log(this.context)
+
+    this.context.router.push({
+      pathname: '/forecast/' + this.state.city,
+      query: {
+        city: this.state.city
+      }
+    })
   },
   handleUpdateCity: function (e) {
     this.setState({
