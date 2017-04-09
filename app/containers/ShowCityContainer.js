@@ -29,6 +29,7 @@ var ShowCityContainer = React.createClass({
   render: function () {
     return (
         <ShowCity 
+          city={this.props.routeParams.city}
           isLoading={this.state.isLoading}
           city_forecast={this.state.city_forecast} />
     )
