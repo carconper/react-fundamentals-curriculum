@@ -26,11 +26,21 @@ var ShowCityContainer = React.createClass({
       }.bind(this));
     console.log("Component Did Mount with forecast query: ", query);
   },
+	handleClick: function (weather) {
+    console.log(this.context)
+    this.context.router.push({
+      pathname: '/detail/' + this.props.routeParams.city,
+      state: {
+        weather: weather
+      }
+    })
+  },
   render: function () {
     return (
         <ShowCity 
           isLoading={this.state.isLoading}
-          city_forecast={this.state.city_forecast} />
+          city_forecast={this.state.city_forecast}
+					handleClick={this.handleClick} /> 
     )
   }
 });
