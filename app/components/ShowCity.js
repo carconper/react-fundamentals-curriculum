@@ -48,7 +48,7 @@ function DayItem (props) {
   var temp = getTemp(props.day.temp.day);
   var icon = getIcon(props.day.weather[0].icon);
   return (
-    <div>
+    <div onClick={props.handleClick}>
      <h3 style={styles.subheader}>{date}</h3>
      <img src={icon} alt="Weather Icon" />
      <p style={styles.weather}>Celsius: {temp[0]} Cº </p>
@@ -63,7 +63,7 @@ function ForecastUI (props) {
       <h1 style={styles.header}>{props.city} </h1>
       <div style={styles.container}>
           {props.forecast.list.map(function (listItem) {
-            return <DayItem key={listItem.dt} day={listItem} />
+            return <DayItem key={listItem.dt} day={listItem} handleClick={props.handleClick.bind(null, listItem)} />
           })}
       </div>
     </div>    
@@ -76,14 +76,18 @@ function ShowCity (props) {
   return (
       props.isLoading === true
       ? <Loading speed={200} text='Waiting' />
-      : <ForecastUI city={props.city} forecast={props.city_forecast} />
+      : <ForecastUI 
+          city={props.city} 
+          forecast={props.city_forecast}
+          handleClick={props.handleClick} />
   )
 }
 
 ShowCity.PropTypes = {
   city: PropTypes.string.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  city_forecast: PropTypes.string.isRequired
+  city_forecast: PropTypes.string.isRequired,
+  handleClick: PropTypes.func.isRequired
 }
 
 module.exports = ShowCity;

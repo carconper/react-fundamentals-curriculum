@@ -3,6 +3,9 @@ var ShowCity = require('../components/ShowCity');
 var helpers = require('../utils/openWeatherHelpers');
 
 var ShowCityContainer = React.createClass({
+  contextTypes: {
+    router: React.PropTypes.object.isRequired
+  },
   getInitialState: function () {
     console.log(this.constructor.displayName + ': getInitialState');
     return {
@@ -31,7 +34,9 @@ var ShowCityContainer = React.createClass({
     this.context.router.push({
       pathname: '/detail/' + this.props.routeParams.city,
       state: {
-        weather: weather
+        weather: weather,
+        isLoading: true,
+        city: this.props.routeParams.city
       }
     })
   },

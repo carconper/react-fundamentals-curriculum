@@ -1,7 +1,7 @@
 var React = require('react');
-var PropTypes = react.PropTypes;
+var PropTypes = React.PropTypes;
 
-var styles: = {
+var styles = {
   container: {
   
   },
@@ -33,6 +33,7 @@ function Info (props) {
 
 function Rotor (props) {
   return (
+    <div>
       <div style={styles.detailsHeader}>
         <button type="button" class="btn btn-default" aria-label="Previous Day">
           <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -42,14 +43,15 @@ function Rotor (props) {
           <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
         </button>
       </div>
-      <div styel={styles.details}>
+      <div style={styles.details}>
         <Icon />
         <Info details={props.cityData} />
       </div>
+    </div>
   )
 }
 
-function CityDetail (props) {
+function CityDetail2 (props) {
   return (
       <div style={styles.container}>
       {
@@ -63,7 +65,15 @@ function CityDetail (props) {
   )
 }
 
-CityDetails.propTypes = {
+
+function CityDetail (props) {
+  return (
+      <h1> DETAILS!!! </h1>
+
+      )
+}
+
+CityDetail.propTypes = {
   city: PropTypes.string.isRequired,
   isLoading: PropTypes.bool.isRequired,
   cityData: PropTypes.object.isRequired
