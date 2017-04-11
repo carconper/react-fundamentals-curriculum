@@ -5,10 +5,10 @@ var CityDetail = require('../components/CityDetail');
 var CityDetailContainer = React.createClass({ 
   render: function () {
     console.log("Props.location.state: ", this.props.location.state)
+    console.log("Props.routeParams: ", this.props.routeParams)
     return (
       <CityDetail 
-        city={this.props.location.state.city}
-        isLoading={this.props.location.state.isLoading}
+        city={this.props.routeParams.city}
         cityData={this.props.location.state.weather} />
     );
   }

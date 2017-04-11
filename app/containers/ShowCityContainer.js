@@ -18,8 +18,14 @@ var ShowCityContainer = React.createClass({
   },
   componentDidMount: function () {
     console.log(this.constructor.displayName + ': componentDidMount!');
-    var query = this.props.location.query;
-    helpers.getForecast(query.city, 'forecast5')
+    this.makeRequest(this.props.routeParams.city);
+  },
+  componentWillReceiveProps: function (nextProps) {
+    console.log(this.constructor.displayName + ': componentWillReceiveProps!');
+    this.makeRequest(nextProps.routeParams.city)
+  },
+  makeRequest: function (city) {
+    helpers.getForecast(city, 'forecast5')
       .then(function (city_forecast) {
         console.log("Promise for FORECAST ready: ", city_forecast);
         this.setState({
@@ -27,7 +33,6 @@ var ShowCityContainer = React.createClass({
           city_forecast: city_forecast
         });
       }.bind(this));
-    console.log("Component Did Mount with forecast query: ", query);
   },
 	handleClick: function (weather) {
     console.log(this.context)
@@ -35,8 +40,6 @@ var ShowCityContainer = React.createClass({
       pathname: '/detail/' + this.props.routeParams.city,
       state: {
         weather: weather,
-        isLoading: true,
-        city: this.props.routeParams.city
       }
     })
   },
